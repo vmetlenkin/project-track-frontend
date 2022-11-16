@@ -4,7 +4,7 @@ import { Project } from '../global/interfaces';
 const ROUTE = 'projects';
 
 interface ProjectResponse {
-  projects: Project[];
+  projects: Project[]
 }
 
 interface ProjectCreateRequest {
@@ -18,10 +18,7 @@ const getAll = async () => {
 }
 
 const create = async (request: ProjectCreateRequest) => {
-  const response = await  instance.post(ROUTE, {
-    name: request.name,
-    userId: request.userId
-  });
+  const response = await instance.post(ROUTE, request);
   return response.data;
 }
 

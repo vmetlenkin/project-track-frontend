@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import AuthModal from '../auth-modal/auth-modal';
+import Link from 'next/link';
+
+const menuLinks = [
+  {
+    title: 'Проекты',
+    path: '/projects'
+  }
+];
 
 const Header: React.FC = () => {
   const [showAuth, setShowAuth] = useState(false);
@@ -9,23 +17,17 @@ const Header: React.FC = () => {
     <div>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Project Track</Navbar.Brand>
+          <Link href="/" passHref>
+            <Navbar.Brand>Project Track</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Главная</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
+              {menuLinks.map((item) => (
+                <Link key={item.title} href={item.path} passHref>
+                  <Nav.Link as="div">{item.title}</Nav.Link>
+                </Link>
+              ))}
             </Nav>
             <Nav>
               <Nav.Link onClick={() => setShowAuth(true)}>Войти</Nav.Link>

@@ -3,6 +3,7 @@ import { Project } from '../../global/interfaces';
 import { projectsAPI } from '../../api/projects';
 import { Button, ListGroup } from 'react-bootstrap';
 import MainLayout from '../../layouts/main-layout';
+import Link from 'next/link';
 
 interface Props {
   projects: Project[]
@@ -24,6 +25,13 @@ const ProjectsPage: React.FC<Props> = (props) => {
 
   return (
     <MainLayout>
+      <div className="d-flex justify-content-end mb-4">
+        <Link href="/projects/create">
+          <Button variant="primary">
+            Создать
+          </Button>
+        </Link>
+      </div>
       <ListGroup>
         {!projects.length && 'Проектов нет'}
         {projects.map((project) =>
@@ -43,7 +51,7 @@ export async function getServerSideProps() {
   const projects = await projectsAPI.getAll();
 
   return {
-    props: { projects }
+    props: {projects}
   }
 }
 
