@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Project } from '../../global/interfaces';
 import { projectsAPI } from '../../api/projects';
-import { Button, ListGroup } from 'react-bootstrap';
+import { Button, Card, ListGroup } from 'react-bootstrap';
 import MainLayout from '../../layouts/main-layout';
 import Link from 'next/link';
 
@@ -36,10 +36,20 @@ const ProjectsPage: React.FC<Props> = (props) => {
         {!projects.length && 'Проектов нет'}
         {projects.map((project) =>
           <ListGroup.Item key={project.id}>
-            <div className="d-flex justify-content-between align-items-center">
-              <div>{project.name}</div>
-              <Button variant="danger" onClick={() => remove(project.id)}>Удалить</Button>
-            </div>
+            <Card style={{ width: '18rem' }}>
+              <Card.Body>
+                <Link href={`/projects/${project.id}`} passHref>
+                  <Card.Title>{project.name}</Card.Title>
+                </Link>
+                <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="#">Another Link</Card.Link>
+              </Card.Body>
+            </Card>
           </ListGroup.Item>
         )}
       </ListGroup>

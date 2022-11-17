@@ -10,18 +10,25 @@ import { useRouter } from 'next/router';
 const validationSchema = yup
   .object()
   .shape({
-    name: yup.string().required('Введите название'),
-    description: yup.string().required('Введите описание')
+    name: yup.string()
+      .required('Введите название'),
+    description: yup.string()
+      .min(5, 'Описание должно содержать не менее 5 символов')
+      .required('Введите описание')
   });
+
+interface InputTypes {
+  name: string;
+  description: string;
+}
 
 const CreatePage = () => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
-  } = useForm({
+  } = useForm<InputTypes>({
     mode: 'onChange',
     resolver: yupResolver(validationSchema)
   });
@@ -30,7 +37,7 @@ const CreatePage = () => {
     try {
       const response = await projectsAPI.create({
         name: data.name,
-        userId: '6f2afdbc-c13f-4b8a-836a-a57bbe11ed84'
+        userId: 'b23a4f8b-e5ba-4182-a57d-6ab05d244170'
       });
 
       console.log(response);
