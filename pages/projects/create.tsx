@@ -37,7 +37,7 @@ const CreatePage = () => {
     try {
       const response = await projectsAPI.create({
         name: data.name,
-        userId: 'b23a4f8b-e5ba-4182-a57d-6ab05d244170'
+        userId: '6f2afdbc-c13f-4b8a-836a-a57bbe11ed84'
       });
 
       console.log(response);

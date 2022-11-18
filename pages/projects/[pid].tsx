@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import MainLayout from '../../layouts/main-layout';
-import { Badge, Button, Col, Row, Table } from 'react-bootstrap';
+import { Badge, Col, Row, Table } from 'react-bootstrap';
+import Button from '../../components/ui/button/button';
 
 const tasks = [
   {
@@ -17,21 +18,21 @@ const tasks = [
   },
   {
     id: 2342342,
-    name: 'Create demo project',
+    name: 'Задача 1',
     priority: 'Критическая',
     author: 'Владислав Метленкин',
     text: `Cannot get description for AWS Connection" is shown for the AWS Credentials build feature uses wrong credential`
   },
   {
     id: 234222,
-    name: 'Create demo project',
+    name: 'Задача 2',
     priority: 'Критическая',
     author: 'Владислав Метленкин',
     text: `Cannot get description for AWS Connection" is shown for the AWS Credentials build feature uses wrong credential`
   },
   {
     id: 2342233,
-    name: 'Create demo project',
+    name: 'Задача 3',
     priority: 'Критическая',
     author: 'Владислав Метленкин',
     text: `Cannot get description for AWS Connection" is shown for the AWS Credentials build feature uses wrong credential`
@@ -76,7 +77,7 @@ const ProjectPage = () => {
           <span>Автор {currentTask.author}</span>
           <h3>{currentTask.name}</h3>
           <p>{currentTask.text}</p>
-          <Button variant="danger">Удалить</Button>
+          <Button>Удалить</Button>
         </Col>
       </Row>
     </MainLayout>
